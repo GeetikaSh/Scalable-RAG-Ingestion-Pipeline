@@ -18,6 +18,10 @@ Unlike a basic RAG implementation, this project focuses on the engineering chall
 
 ## Project Objectives
 
+### Document Formats Supported
+
+The pipeline can handle PDF, DOCS, TXT, CSV, XLSX, PPTX, and HTML files.
+
 - Build an API-driven document ingestion service using FastAPI.
 - Implement asynchronous task processing using RabbitMQ and Celery.
 - Support multiple workers and concurrent document processing.
@@ -130,11 +134,34 @@ scalable-rag-ingestion/
 │
 ├── docs/                 # Architecture and technical documentation
 │
-├── requirements.txt
+├── pyproject.toml
+├── .env.example
 ├── README.md
 ├── .gitignore
 └── docker-compose.yml
 ```
+
+## Development Setup
+
+The project requires Python 3.11 or newer. Create a virtual environment, install
+the project with development tools, and copy the example environment file:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev]'
+cp .env.example .env
+```
+
+Install the optional local embedding and OCR dependencies when needed:
+
+```bash
+python -m pip install -e '.[dev,embeddings,ocr]'
+```
+
+Pytest, Ruff, and mypy are configured in `pyproject.toml`. Run them with
+`pytest`, `ruff check .`, and `mypy app` as implementation is added.
 
 ## Performance and Evaluation
 
