@@ -160,6 +160,19 @@ Install the optional local embedding and OCR dependencies when needed:
 python -m pip install -e '.[dev,embeddings,ocr]'
 ```
 
+## Run the API
+
+Start the development server from the repository root:
+
+```bash
+uvicorn app.api.main:app --reload
+```
+
+The API currently exposes `GET /health`, `GET /ready`, and `GET /metrics`.
+Interactive OpenAPI documentation is available at `/docs`. Readiness currently
+checks only that the API process is serving requests; database and broker checks
+will be added alongside those integrations.
+
 Pytest, Ruff, and mypy are configured in `pyproject.toml`. Run them with
 `pytest`, `ruff check .`, and `mypy app` as implementation is added.
 
